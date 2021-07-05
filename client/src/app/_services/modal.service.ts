@@ -11,7 +11,7 @@ export class ModalService {
 //new service push
   constructor(private modalService: BsModalService) { }
 
-  confirm(title = 'Add New Item', 
+  confirm(title = 'Add New Items', 
     message = 'Are you sure you want to do this?', 
     btnOkText = 'Save', 
     btnCancelText = 'Close'): Observable<boolean> {
