@@ -8,7 +8,7 @@ import { AddItemDialogComponent } from '../modals/add-item-dialog/add-item-dialo
 })
 export class ModalService {
   bsModelRef: BsModalRef;
-
+//new service push
   constructor(private modalService: BsModalService) { }
 
   confirm(title = 'Add New Item', 
