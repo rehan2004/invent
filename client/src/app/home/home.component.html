@@ -1,0 +1,45 @@
+<div class="container mt-5">
+    <div *ngIf="!registerMode" style='text-align: center;'>
+        <h1>Welcome to Inventory-Store managment system</h1>
+        <p class="lead">
+        </p>
+   <br/>
+   <br/>
+        
+            <div id="terms" class="container container-terms white-bg">
+                <div class="wrapper-xs">
+                  <h5>1.  Acceptance The Use Of Lorem Ipsum Terms and Conditions</h5>
+                  <p>Your access to and use of Lorem Ipsum (the app) is subject exclusively to these Terms and Conditions. You will not use the app for any purpose that is unlawful or prohibited by these Terms and Conditions. By using the app you are fully accepting the terms, conditions and disclaimers contained in this notice. If you do not accept these Terms and Conditions you must immediately stop using the app.</p>
+                  <br />
+                  
+                  <h5>2.  CREDIT CARD DETAILS</h5>
+                  <p>All Lorem Ipsum purchases are managed by the individual App Stores (Apple, Google Windows) and Lorem Ipsum will never store your credit card information or make it available to any third parties. Any purchasing information provided will be provided directly from you to the respective App Store and you will be subject to their credit card policies.</p>
+                  <br />
+                  
+                  <h5>3.  LEGAL ADVICE</h5>
+                  <p>
+                      The contents of Lorem Ipsum app do not constitute advice and should not be relied upon in making or refraining from making, any decision. <br />
+                      All material contained on Lorem Ipsum is provided without any or warranty of any kind. You use the material on Lorem Ipsum at your own discretion
+                  </p>
+                  <br />
+              
+                 
+              
+                              </div>
+              </div>
+              
+        
+        <div class="text-center">
+            <button (click)="registerToggle()" class="btn btn-primary btn-lg mr-2">Support</button>
+            <button class="btn btn-info btn-lg">Learn more</button>
+        </div>
+    </div>
+
+    <div *ngIf="registerMode" class="container">
+        <div class="row justify-content-center">
+            <div class="col-4">
+                <app-register (cancelRegister)="cancelRegisterMode($event)" ></app-register>
+            </div>
+        </div>
+    </div>
+</div>

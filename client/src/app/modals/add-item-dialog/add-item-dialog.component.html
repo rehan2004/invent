@@ -1,0 +1,78 @@
+<div class="modal-header">
+  <h4 class="modal-title pull-left">{{ title }}</h4>
+</div>
+<div class="modal-body">
+  <div class="form-group">
+    <form id="editForm" class="form-inline" (ngSubmit)="addUpdateItem()">
+      <div class="col-lg-4">
+        <label>Item Name</label>
+
+        <input type="text" class="form-control" name="introduction" />
+      </div>
+      <div class="col-lg-4">
+        <label>Category</label>
+        <select name="category" style="width: 230px"   class="form-control ">
+          <option >
+             category number 1
+          </option>
+      </select>
+      </div>
+      <div class="col-lg-4">
+        <label>Quantity</label>
+        <input type="text" class="form-control" name="introduction" />
+      </div>
+      
+      <div class="col-lg-4">
+        <label>Measurement Unt</label>
+        <select name="MeasurementUnit" style="width: 230px"   class="form-control ">
+          <option >
+            Kilogram
+          </option>
+          <option >
+            Meter
+          </option>
+      </select>
+      </div>
+
+      <div class="col-lg-4">
+        <label>Store</label>
+        <select name="store" style="width: 230px"   class="form-control ">
+          <option *ngFor="let category of itemCategories">
+            Store 1
+          </option>
+          <option >
+           Store 2
+          </option>
+      </select>
+      </div>
+
+      <div class="col-lg-4">
+        <label>Supply</label>
+        <select name="supply" style="width: 230px"   class="form-control ">
+          <option >
+           Supply 1
+          </option>
+          <option >
+            Supply 2
+          </option>
+      </select>
+      </div>
+
+      <div class="col-lg-4">
+        <label>Description</label>
+
+        <input type="text" class="form-control" style="width: 485px" name="introduction" />
+      </div>
+     
+      
+    </form>
+  </div>
+</div>
+<div class="modal-footer">
+  <button type="button" class="btn btn-success" (click)="confirm()">
+    {{ btnOkText }}
+  </button>
+  <button type="button" class="btn btn-danger" (click)="decline()">
+    {{ btnCancelText }}
+  </button>
+</div>

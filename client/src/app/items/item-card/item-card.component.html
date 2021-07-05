@@ -1,0 +1,38 @@
+<div class="card mb-3">
+    <span class="card-text text-muted text-center " style="color: rgb(197, 103, 69) !important; ;font-size: 10 !important ;">Stocked @ -{{item.storeName}}</span>
+    <span class="card-text text-muted text-center " >{{item.categoryName}}</span>
+    <div class="card-img-wrapper">
+        <img src="{{ './assets/item.png'}}" alt="{{item.itemName}}" class="card-img-top" style="width:110px ! important">
+        <ul class="list-inline member-icons animate text-center">
+            <li class="list-inline-item"><button routerLink='' class="btn btn-primary">
+                <i class="fa fa-cart-arrow-down"></i></button></li> 
+            <!-- <li class="list-inline-item">{{item.quantity}} - {{item.measurementUnit}}</li> -->
+            <li class="list-inline-item">
+                <button 
+                    routerLink='' 
+                    [queryParams]='{tab: 3}'
+                    class="btn btn-primary"> 
+                <i class="fa fa-pencil-square-o"></i>
+            </button></li>
+            <li class="list-inline-item">
+                <button 
+                    routerLink='' 
+                    [queryParams]='{tab: 3}'
+                    class="btn btn-primary"> 
+                <i class="fa  fa-list-ul "></i>
+            </button></li>
+           
+        </ul>
+    </div>
+    <div class="card-body p-1">
+        <h6 class="card-title text-center mb-1">
+            <!-- <span [class.is-online]="(presence.onlineUsers$ | async).includes(member.username)">
+                <i class="fa fa-user mr-2"></i>
+            </span> -->
+              <span>{{item.itemName}} </span>
+           
+             <!-- {{item.actualQuantity}} -->
+        </h6>
+        <p class="card-text text-muted text-center">{{item.quantity}}-({{item.measurementUnit}})</p>
+    </div>
+</div>

@@ -1,0 +1,78 @@
+<div class="text-center mt-3">
+    <h2>List Of Items</h2>
+</div>
+<!-- <div class="text-center mt-3">
+    <h2>Total Records - {{pagination?.totalItems}}</h2>
+</div> -->
+
+<div class="container mt-3">
+    <form #form="ngForm" class="form-inline mb-3" (ngSubmit)="loadItems()" autocomplete="off">
+        <div class="form-group">
+            <label>Item Name: </label>
+            <input type="text" class="form-control ml-1" style="width: 170px;" name="minAge" 
+               
+                >
+        </div>
+
+        
+
+        <div class="form-group px-2">
+            <label>Store Name: </label>
+            <select name="gender" style="width: 130px" [(ngModel)]="userParams.gender" class="form-control ml-1">
+                <option *ngFor="let gender of genderList" [value]="gender.value">
+                    {{gender.display}}
+                </option>
+            </select>
+        </div>
+
+        <button class="btn btn-primary ml-1" type="submit">Search</button>
+        <button (click)="resetFilters()" class="btn btn-info ml-1" type="submit">Reset</button>
+        <button class="btn btn-success ml-1" type="button" (click)="openAddItemModal()"><i class="fa fa-plus"></i>&nbsp;New Item</button>
+        <div class="col">
+            <div class="btn-group float-right">
+                <button 
+                    type="button"
+                    class="btn btn-primary" 
+                    name='orderBy' 
+                    (click)="loadItems()"
+                    btnRadio='lastActive'
+                    [(ngModel)]="userParams.orderBy">Last Inventory</button>
+    
+                <button 
+                    type="button"
+                    class="btn btn-primary" 
+                    name='orderBy' 
+                    (click)="loadItems()"
+                    btnRadio='created'
+                    [(ngModel)]="userParams.orderBy">Newest Items</button>
+            </div>
+        </div>
+        
+
+    </form>
+    <div class="text-right mt-3">
+        <h5>Total Records - {{pagination?.totalItems}}</h5>
+    </div>
+</div>
+
+<div class="row">
+    <div *ngFor="let item of items" class="col-2">
+        <!-- <span>{{item.itemName}}</span> -->
+        <br/>
+        <app-item-card [item]="item"></app-item-card>
+    </div>
+</div>
+
+<div class="d-flex justify-content-center" *ngIf="pagination">
+    <pagination 
+        [boundaryLinks]="true" 
+        [totalItems]="pagination.totalItems"
+        [itemsPerPage]="pagination.itemsPerPage"
+        [(ngModel)]="pagination.currentPage"
+        (pageChanged)="pageChanged($event)"
+        previousText="&lsaquo;" 
+        nextText="&rsaquo;" 
+        firstText="&laquo;" 
+        lastText="&raquo;">
+</pagination>
+</div>
