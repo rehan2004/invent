@@ -10,6 +10,8 @@ namespace API.Interfaces
     {
        
         Task<PagedList<ItemCategoryDto>> GetItemCategoriesAsync(SearchParams searchParams);
-       
+        Task<PagedList<MeasurementUnit>> GetMeasurementUnitAsync(SearchParams searchParams);
+        Task<PagedList<Supply>> GetSupplyAsync(SearchParams searchParams);
+
     }
 }

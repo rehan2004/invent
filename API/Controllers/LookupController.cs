@@ -34,14 +34,36 @@ namespace API.Controllers
         [HttpGet("category")]
         public async Task<ActionResult<IEnumerable<ItemCategoryDto>>> GetCategory([FromQuery] SearchParams searchParams)
         {
-            var users = await _unitOfWork.LookupRepository.GetItemCategoriesAsync(searchParams);
+            var results = await _unitOfWork.LookupRepository.GetItemCategoriesAsync(searchParams);
 
-            Response.AddPaginationHeader(users.CurrentPage, users.PageSize,
-                users.TotalCount, users.TotalPages);
+            Response.AddPaginationHeader(results.CurrentPage, results.PageSize,
+                results.TotalCount, results.TotalPages);
                
-            return Ok(users);
+            return Ok(results);
         }
 
-       
+        [HttpGet("measurementunit")]
+        public async Task<ActionResult<IEnumerable<MeasurementUnit>>> GetMeasurementUnit([FromQuery] SearchParams searchParams)
+        {
+            var results = await _unitOfWork.LookupRepository.GetMeasurementUnitAsync(searchParams);
+
+            Response.AddPaginationHeader(results.CurrentPage, results.PageSize,
+                results.TotalCount, results.TotalPages);
+
+            return Ok(results);
+        }
+
+        [HttpGet("supply")]
+        public async Task<ActionResult<IEnumerable<MeasurementUnit>>> GetSupply([FromQuery] SearchParams searchParams)
+        {
+            var results = await _unitOfWork.LookupRepository.GetSupplyAsync(searchParams);
+
+            Response.AddPaginationHeader(results.CurrentPage, results.PageSize,
+                results.TotalCount, results.TotalPages);
+
+            return Ok(results);
+        }
+
+
     }
 }

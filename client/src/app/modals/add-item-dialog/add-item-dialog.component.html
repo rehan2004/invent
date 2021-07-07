@@ -3,7 +3,7 @@
 </div>
 <div class="modal-body">
   <div class="form-group">
-    <form id="editForm" class="form-inline" (ngSubmit)="addUpdateItem()">
+    <form  #form="ngForm"  autocomplete="off" id="editForm" class="form-inline" (ngSubmit)="addUpdateItem()">
       <div class="col-lg-4">
         <label>Item Name</label>
 
@@ -11,7 +11,10 @@
       </div>
       <div class="col-lg-4">
         <label>Category</label>
-        <select name="itemCategory"  [(ngModel)]="searchParams.itemCategory" style="width: 230px"   class="form-control ">
+        <select name="itemCategory"  [(ngModel)]="newItemModel.category" style="width: 230px"   class="form-control ">
+          <option  value="-1">
+            -Select-
+        </option>
           <option *ngFor="let cat of itemCategories" [value]="cat.id">
             {{cat.categoryName}}
         </option>
@@ -21,49 +24,50 @@
       </div>
       <div class="col-lg-4">
         <label>Quantity</label>
-        <input type="text" class="form-control" name="introduction" />
+        <input type="number"   class="form-control" name="introduction" />
       </div>
       
       <div class="col-lg-4">
         <label>Measurement Unt</label>
-        <select name="MeasurementUnit" style="width: 230px"   class="form-control ">
-          <option >
-            Kilogram
-          </option>
-          <option >
-            Meter
-          </option>
+        <select name="MeasurementUnit"  [(ngModel)]="newItemModel.unit" style="width: 230px"   class="form-control ">
+          <option  value="-1">
+            -Select-
+        </option>
+          <option *ngFor="let mUnit of measurementUnit" [value]="mUnit.id">
+            {{mUnit.unit}}
+        </option>
       </select>
       </div>
 
       <div class="col-lg-4">
         <label>Store</label>
-        <select name="store" style="width: 230px"   class="form-control ">
-          <option >
-            Store 1
-          </option>
-          <option >
-           Store 2
-          </option>
+        <select name="store"  [(ngModel)]="newItemModel.store" style="width: 230px"   class="form-control ">
+          <option  value="-1">
+            -Select-
+        </option>
+          <option *ngFor="let store of stores" [value]="store.id">
+            {{store.storeName}}
+        </option>
       </select>
       </div>
 
       <div class="col-lg-4">
         <label>Supply</label>
-        <select name="supply" style="width: 230px"   class="form-control ">
-          <option >
-           Supply 1
-          </option>
-          <option >
-            Supply 2
-          </option>
+        <select name="supply"  [(ngModel)]="newItemModel.supply" style="width: 230px"   class="form-control ">
+          <option  value="-1">
+            -Select-
+        </option>
+          <option *ngFor="let sup of supplies" [value]="sup.id">
+            {{sup.supplyTitle}}
+        </option>
       </select>
       </div>
 
       <div class="col-lg-4">
         <label>Description</label>
 
-        <input type="text" class="form-control" style="width: 485px" name="introduction" />
+        <textarea  rows="4" class="form-control" style="width: 485px" name="introduction">
+        </textarea>
       </div>
      
       

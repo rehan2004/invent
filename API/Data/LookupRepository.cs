@@ -32,6 +32,18 @@ namespace API.Data
                     searchParams.PageNumber, searchParams.PageSize);
         }
 
-       
+        public async Task<PagedList<MeasurementUnit>> GetMeasurementUnitAsync(SearchParams searchParams)
+        {
+            var query = _context.MeasurementUnits.AsQueryable();
+            return await PagedList<MeasurementUnit>.CreateAsync(query.AsNoTracking(),
+                    searchParams.PageNumber, searchParams.PageSize);
+        }
+
+        public async Task<PagedList<Supply>> GetSupplyAsync(SearchParams searchParams)
+        {
+            var query = _context.Supply.AsQueryable();
+            return await PagedList<Supply>.CreateAsync(query.AsNoTracking(),
+                    searchParams.PageNumber, searchParams.PageSize);
+        }
     }
 }
