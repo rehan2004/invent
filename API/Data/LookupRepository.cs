@@ -27,9 +27,6 @@ namespace API.Data
         public async Task<PagedList<ItemCategoryDto>> GetItemCategoriesAsync(SearchParams searchParams)
         {
             var query = _context.ItemCategory.AsQueryable();
-
-          
-
             return await PagedList<ItemCategoryDto>.CreateAsync(query.ProjectTo<ItemCategoryDto>(_mapper
                 .ConfigurationProvider).AsNoTracking(), 
                     searchParams.PageNumber, searchParams.PageSize);

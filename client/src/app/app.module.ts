@@ -11,6 +11,7 @@ import { HomeComponent } from './home/home.component';
 import { RegisterComponent } from './register/register.component';
 import { MemberListComponent } from './members/member-list/member-list.component';
 import { ItemListComponent } from './items/item-list/item-list.component';
+import { AddItemDialogComponent } from './modals/add-item-dialog/add-item-dialog.component';
 import { ItemCardComponent } from './items/item-card/item-card.component';
 import { StoreListComponent } from './stores/store-list/store-list.component';
 import { StoreCardComponent } from './stores/store-card/store-card.component';
@@ -47,6 +48,7 @@ import { ConfirmDialogComponent } from './modals/confirm-dialog/confirm-dialog.c
     RegisterComponent,
     MemberListComponent,
     ItemListComponent,
+    AddItemDialogComponent,
     ItemCardComponent,
     StoreListComponent,
     StoreCardComponent,

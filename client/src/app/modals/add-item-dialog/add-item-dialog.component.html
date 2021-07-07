@@ -11,11 +11,13 @@
       </div>
       <div class="col-lg-4">
         <label>Category</label>
-        <select name="category" style="width: 230px"   class="form-control ">
-          <option >
-             category number 1
-          </option>
+        <select name="itemCategory"  [(ngModel)]="searchParams.itemCategory" style="width: 230px"   class="form-control ">
+          <option *ngFor="let cat of itemCategories" [value]="cat.id">
+            {{cat.categoryName}}
+        </option>
       </select>
+
+     
       </div>
       <div class="col-lg-4">
         <label>Quantity</label>

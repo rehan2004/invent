@@ -8,13 +8,15 @@ import { ItemCategory } from 'src/app/_models/itemcategory';
 import { Pagination } from 'src/app/_models/pagination';
 import { User } from 'src/app/_models/user';
 
+
+
 @Component({
   selector: 'app-add-item-dialog',
   templateUrl: './add-item-dialog.component.html',
   styleUrls: ['./add-item-dialog.component.css']
 })
 export class AddItemDialogComponent implements OnInit {
-  @ViewChild('editForm') editForm: NgForm;
+ 
   title: string;
   message: string;
   btnOkText: string;

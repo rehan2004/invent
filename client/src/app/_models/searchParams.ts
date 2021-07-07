@@ -5,6 +5,7 @@ export class SearchParams {
     storeName="";
     itemId: number;
     itemName: string;
+    itemCategory: string;
     
     supplierId: number;
     supplierName: string;
