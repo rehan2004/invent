@@ -30,8 +30,9 @@ namespace API.Controllers
             _mapper = mapper;
         }
 
-        [HttpGet]
-        public async Task<ActionResult<IEnumerable<ItemCategoryDto>>> GetItemCategories([FromQuery] SearchParams searchParams)
+       
+        [HttpGet("category")]
+        public async Task<ActionResult<IEnumerable<ItemCategoryDto>>> GetCategory([FromQuery] SearchParams searchParams)
         {
             var users = await _unitOfWork.LookupRepository.GetItemCategoriesAsync(searchParams);
 
@@ -42,7 +43,5 @@ namespace API.Controllers
         }
 
        
-
-
     }
 }

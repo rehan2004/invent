@@ -17,7 +17,7 @@ namespace API.Data
         public IUserRepository UserRepository => new UserRepository(_context, _mapper);
         public IItemRepository ItemRepository => new ItemRepository(_context, _mapper);
         public IStoreRepository StoreRepository => new StoreRepository(_context, _mapper);
-
+        public ILookupRepository LookupRepository => new LookupRepository(_context, _mapper);
         public IMessageRepository MessageRepository => new MessageRepository(_context, _mapper);
 
         public ILikesRepository LikesRepository => new LikesRepository(_context);
