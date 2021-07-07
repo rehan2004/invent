@@ -20,7 +20,7 @@ export class AddItemDialogComponent implements OnInit {
   btnOkText: string;
   btnCancelText: string;
   result: boolean;
-  searchParams: SearchParams;
+  public searchParams: SearchParams;
   newItemModel: any = {};
   itemCategories: ItemCategory[];
   measurementUnit: MeasurementUnit[];

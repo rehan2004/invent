@@ -14,7 +14,7 @@ import { User } from 'src/app/_models/user';
   styleUrls: ['./store-list.component.css']
 })
 export class StoreListComponent implements OnInit {
-  stores: Store[];
+  public stores: Store[];
   pagination: Pagination;
   searchParams: SearchParams;
   user: User;
