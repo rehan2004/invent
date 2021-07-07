@@ -20,7 +20,7 @@ export class LookupService {
   itemCategoryCache = new Map();
   searchParams: SearchParams;
   user: User;
-
+//service for aall lookups
   constructor(private http: HttpClient, private accountService: AccountService) {
      this.accountService.currentUser$.pipe(take(1)).subscribe(user => {
       this.user = user;
