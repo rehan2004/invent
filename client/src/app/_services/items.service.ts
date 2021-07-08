@@ -40,6 +40,13 @@ export class ItemsService {
     return this.userParams;
   }
 
+  
+  saveItem(newItemModel: any) {
+    console.log(newItemModel)
+    return this.http.post(this.baseUrl + 'items/saveitem/' , newItemModel, {})
+  }
+
+
   getItems(userParams: UserParams) {
     var response = this.itemCache.get(Object.values(userParams).join('-'));
     if (response) {
@@ -53,7 +60,7 @@ export class ItemsService {
     // params = params.append('gender', userParams.gender);
     params = params.append('orderBy', userParams.orderBy);
 
-    return getPaginatedResult<Item[]>(this.baseUrl + 'items', params, this.http)
+    return getPaginatedResult<Item[]>(this.baseUrl + 'items/items', params, this.http)
       .pipe(map(response => {
         this.itemCache.set(Object.values(userParams).join('-'), response);
         return response;

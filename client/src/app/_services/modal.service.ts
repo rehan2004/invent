@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { BsModalRef, BsModalService } from 'ngx-bootstrap/modal';
 import { Observable } from 'rxjs';
 import { AddItemDialogComponent } from '../modals/add-item-dialog/add-item-dialog.component';
-
+import { InventoryDialogComponent } from '../modals/inventory-dialog/inventory-dialog.component';
 @Injectable({
   providedIn: 'root'
 })
@@ -12,6 +12,7 @@ export class ModalService {
   constructor(private modalService: BsModalService) { }
 
   confirm(title = 'Add New Items', 
+    modalType='AddItemDialogComponent',
     message = 'Are you sure you want to do this?', 
     btnOkText = 'Save', 
     btnCancelText = 'Close'): Observable<boolean> {
@@ -25,7 +26,16 @@ export class ModalService {
         },
         class:"modal-lg"
       }
+
+      if (modalType==='AddItemDialogComponent')
+      {
     this.bsModelRef = this.modalService.show(AddItemDialogComponent, config);
+      }
+
+      if (modalType==='InventoryDialogComponent')
+      {
+    this.bsModelRef = this.modalService.show(InventoryDialogComponent, config);
+      }
     
     return new Observable<boolean>(this.getResult());
   }

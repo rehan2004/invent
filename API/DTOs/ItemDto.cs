@@ -15,16 +15,22 @@ namespace API.DTOs
         public string CategoryName { get; set; }
         public string MeasurementUnit { get; set; }
         public string BrandName { get; set; }
-        //,[BrandName]
-        //,[GuranteeStart]
-        //,[GuranteeEnd]
-        //,[Description]
-        //,[IsActive]
-        //,[StoreId]
-        //,[SupplyId]
-        //,[CategoryId]
-        //,[CreatedBy]
-        //,[CreatedDate]
-        // public ICollection<PhotoDto> Photos { get; set; }
+
+
+
     }
+
+    public class SaveItemDto
+    {
+        public string itemName { get; set; }
+        public string category { get; set; }
+        public int quantity { get; set; }
+        public string store { get; set; }
+        public string supply { get; set; }
+        public string unit { get; set; }
+        public string description { get; set; }
+
+    }
+
+
 }

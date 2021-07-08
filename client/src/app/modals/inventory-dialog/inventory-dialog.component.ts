@@ -11,11 +11,11 @@ import { User } from 'src/app/_models/user';
 import { Store } from 'src/app/_models/store';
 
 @Component({
-  selector: 'app-add-item-dialog',
-  templateUrl: './add-item-dialog.component.html',
-  styleUrls: ['./add-item-dialog.component.css'],
+  selector: 'app-inventory-dialog',
+  templateUrl: './inventory-dialog.component.html',
+  styleUrls: ['./inventory-dialog.component.css'],
 })
-export class AddItemDialogComponent implements OnInit {
+export class InventoryDialogComponent implements OnInit {
   title: string;
   message: string;
   btnOkText: string;

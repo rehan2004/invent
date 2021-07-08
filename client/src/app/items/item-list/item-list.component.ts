@@ -13,7 +13,7 @@ import { ModalService } from 'src/app/_services/modal.service';
 @Component({
   selector: 'app-item-list',
   templateUrl: './item-list.component.html',
-  styleUrls: ['./item-list.component.css']
+  styleUrls: ['./item-list.component.css'],
 })
 export class ItemListComponent implements OnInit {
   bsModalRef: BsModalRef;
@@ -21,10 +21,16 @@ export class ItemListComponent implements OnInit {
   pagination: Pagination;
   userParams: UserParams;
   user: User;
-  genderList = [{ value: 'store1', display: 'Store-1' }, { value: 'store2', display: 'Store-2' },
-  { value: 'store3', display: 'Store-3' }];
+  genderList = [
+    { value: 'store1', display: 'Store-1' },
+    { value: 'store2', display: 'Store-2' },
+    { value: 'store3', display: 'Store-3' },
+  ];
 
-  constructor(private itemService: ItemsService, private modalService: ModalService) {
+  constructor(
+    private itemService: ItemsService,
+    private modalService: ModalService
+  ) {
     this.userParams = this.itemService.getUserParams();
   }
 
@@ -34,19 +40,17 @@ export class ItemListComponent implements OnInit {
 
   loadItems() {
     this.itemService.setUserParams(this.userParams);
-    this.itemService.getItems(this.userParams).subscribe(response => {
+    this.itemService.getItems(this.userParams).subscribe((response) => {
       this.items = response.result;
       this.pagination = response.pagination;
-    })
+    });
   }
 
   openAddItemModal() {
-    this.modalService.confirm('Add New Item', '').subscribe(result => {
+    this.modalService.confirm('Add New Item', 'AddItemDialogComponent', '').subscribe((result) => {
       if (result) {
-       
       }
-    })
-
+    });
   }
   resetFilters() {
     this.userParams = this.itemService.resetUserParams();

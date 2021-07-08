@@ -30,7 +30,7 @@ namespace API.Controllers
             _mapper = mapper;
         }
 
-        [HttpGet]
+        [HttpGet("items")]
         public async Task<ActionResult<IEnumerable<ItemDto>>> GetItems([FromQuery] UserParams userParams)
         {
             //var gender = await _unitOfWork.ItemRepository.GetItemsAsync(User.GetUsername());
@@ -47,7 +47,14 @@ namespace API.Controllers
             return Ok(users);
         }
 
-       
+        [HttpPost("saveitem")]
+        public async Task<ActionResult<int>> SaveItem(SaveItemDto newItem)
+        {
+            var query = await _unitOfWork.ItemRepository.SaveItemsAsync(newItem);
+            return Ok(query);
+        }
+
+
 
 
     }

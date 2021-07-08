@@ -64,6 +64,34 @@ namespace API.Data
                     userParams.PageNumber, userParams.PageSize);
         }
 
+
+        public async Task<int> SaveItemsAsync(SaveItemDto item)
+        {
+           
+            //var query = _context.Items.AsQueryable();
+            _context.Items.Add(new Item
+            {
+                StoreId = Convert.ToInt32(item.store),
+                ItemName = item.itemName,
+                CategoryId = Convert.ToInt32(item.category),
+                Quantity= item.quantity,
+                SerialNumber="111-02201111",
+                ActualQuantity = item.quantity,
+                SupplyId = Convert.ToInt32(item.supply),
+                MeasurementUnitId = Convert.ToInt32(item.unit),
+                Description = item.description,
+                CreatedBy=1,
+                IsActive=true
+                
+            });
+           
+
+
+            return await _context.SaveChangesAsync();
+        }
+
+        
+
         public async Task<AppUser> GetUserByIdAsync(int id)
         {
             return await _context.Users.FindAsync(id);
