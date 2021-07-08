@@ -9,6 +9,7 @@ import { ItemCategory, MeasurementUnit, Supply } from 'src/app/_models/lookups';
 import { Pagination } from 'src/app/_models/pagination';
 import { User } from 'src/app/_models/user';
 import { Store } from 'src/app/_models/store';
+import { Item } from 'src/app/_models/item';
 
 @Component({
   selector: 'app-inventory-dialog',
@@ -20,6 +21,7 @@ export class InventoryDialogComponent implements OnInit {
   message: string;
   btnOkText: string;
   btnCancelText: string;
+  data:any;
   result: boolean;
   public searchParams: SearchParams;
   newItemModel: any = {};
@@ -41,13 +43,10 @@ export class InventoryDialogComponent implements OnInit {
   }
 
   ngOnInit(): void {
+
+   
     //const {unit="-1",supply="-1",itemCategory="-1"}= this.newItemModel;
-    this.newItemModel = {
-      unit: '-1',
-      supply: '-1',
-      category: '-1',
-      store: '-1',
-    };
+    this.newItemModel = this.data;
     this.loadItemCatories();
     this.loadMeasurementUnit();
     this.loadSupply();

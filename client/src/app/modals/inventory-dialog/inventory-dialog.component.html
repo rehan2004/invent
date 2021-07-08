@@ -18,18 +18,18 @@
           disabled="true"
           [(ngModel)]="newItemModel.itemName"
           class="form-control"
-          name="introduction"
+          name="itemName"
         />
       </div>
 
       <div class="col-lg-3">
-        <label>Quantity</label>
+        <label>Initial Quantity</label>
         <input
           type="number"
           disabled="true"
           [(ngModel)]="newItemModel.quantity"
           class="form-control"
-          name="introduction"
+          name="quantity"
         />
       </div>
 
@@ -38,14 +38,14 @@
         <input
           type="number"
           disabled="true"
-          [(ngModel)]="newItemModel.quantity"
+          [(ngModel)]="newItemModel.actualQuantity"
           class="form-control"
-          name="introduction"
+          name="actualQuantity"
         />
       </div>
 
-      
-      <div class="col-lg-3">
+     
+      <div class="col-lg-4">
         <label>Pull Quantity</label>
         <input
           type="number"
@@ -54,16 +54,15 @@
           name="introduction"
         />
       </div>
-      <div class="col-lg-3"></div>
-      <div class="col-lg-3"></div>
+      
       <div class="col-lg-6">
         <label> Pull Description</label>
 
         <textarea
           [(ngModel)]="newItemModel.description"
-          rows="4"
+          rows="1"
           class="form-control"
-          style="width: 485px"
+          style="width: 360px"
           name="introduction"
         >
         </textarea>

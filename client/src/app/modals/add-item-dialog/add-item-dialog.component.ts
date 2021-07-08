@@ -20,6 +20,7 @@ export class AddItemDialogComponent implements OnInit {
   message: string;
   btnOkText: string;
   btnCancelText: string;
+  data: any;
   result: boolean;
   public searchParams: SearchParams;
   newItemModel: any = {};
@@ -42,16 +43,25 @@ export class AddItemDialogComponent implements OnInit {
 
   ngOnInit(): void {
     //const {unit="-1",supply="-1",itemCategory="-1"}= this.newItemModel;
-    this.newItemModel = {
-      unit: '-1',
-      supply: '-1',
-      category: '-1',
-      store: '-1',
-    };
+  
+
     this.loadItemCatories();
     this.loadMeasurementUnit();
     this.loadSupply();
     this.loadStore();
+    alert(JSON.stringify(this.data))
+    if (this.data) {
+      this.newItemModel = this.data;
+    } else {
+      this.newItemModel = {
+        unit: '-1',
+        supply: '-1',
+        category: '-1',
+        store: '-1',
+      };
+    }
+
+    this.newItemModel ={...this.newItemModel, category:2, supply:1};
   }
 
   loadItemCatories() {
@@ -90,12 +100,10 @@ export class AddItemDialogComponent implements OnInit {
     });
   }
 
-  addUpdateItem() {
-    
-    this.itemsService.saveItem(this.newItemModel).subscribe((response) => {
-  
-    });
 
+
+  addUpdateItem() {
+    this.itemsService.saveItem(this.newItemModel).subscribe((response) => {});
   }
 
   confirm() {

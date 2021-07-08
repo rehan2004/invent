@@ -13,15 +13,17 @@ export class ModalService {
 
   confirm(title = 'Add New Items', 
     modalType='AddItemDialogComponent',
+    data:any,
     message = 'Are you sure you want to do this?', 
     btnOkText = 'Save', 
     btnCancelText = 'Close'): Observable<boolean> {
       const config = {
-        initialState: {
+         initialState: {
           title, 
           message,
           btnOkText,
           btnCancelText,
+          data,
            
         },
         class:"modal-lg"
@@ -35,6 +37,7 @@ export class ModalService {
       if (modalType==='InventoryDialogComponent')
       {
     this.bsModelRef = this.modalService.show(InventoryDialogComponent, config);
+   
       }
     
     return new Observable<boolean>(this.getResult());

@@ -47,7 +47,7 @@ export class ItemListComponent implements OnInit {
   }
 
   openAddItemModal() {
-    this.modalService.confirm('Add New Item', 'AddItemDialogComponent', '').subscribe((result) => {
+    this.modalService.confirm('Add New Item', 'AddItemDialogComponent', this.items[0]).subscribe((result) => {
       if (result) {
       }
     });

@@ -22,8 +22,16 @@ export class ItemCardComponent implements OnInit {
     
   }
 
-  openInventoryModal() {
-    this.modalService.confirm('Inventory Update', 'InventoryDialogComponent', '').subscribe((result) => {
+  openInventoryModal(item:Item) {
+ 
+    this.modalService.confirm('Inventory Update', 'InventoryDialogComponent', item,'').subscribe((result) => {
+      if (result) {
+      }
+    });
+  }
+
+  openItemEditModal(item: Item) {
+    this.modalService.confirm('Edit Item', 'AddItemDialogComponent', item).subscribe((result) => {
       if (result) {
       }
     });
