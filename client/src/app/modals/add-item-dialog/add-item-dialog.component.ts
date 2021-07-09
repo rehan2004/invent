@@ -29,6 +29,7 @@ export class AddItemDialogComponent implements OnInit {
   supplies: Supply[];
   stores: Store[];
   pagination: Pagination;
+  isEditMode:boolean=false;
 
   user: User;
 
@@ -43,16 +44,26 @@ export class AddItemDialogComponent implements OnInit {
 
   ngOnInit(): void {
     //const {unit="-1",supply="-1",itemCategory="-1"}= this.newItemModel;
-  
 
     this.loadItemCatories();
     this.loadMeasurementUnit();
     this.loadSupply();
     this.loadStore();
-    alert(JSON.stringify(this.data))
+    
     if (this.data) {
-      this.newItemModel = this.data;
+      
+      this.isEditMode=true;
+      this.newItemModel = {
+        ...this.data,
+        category: this.data.categoryId.toString(),
+        supply: this.data.supplyId.toString(),
+        unit: this.data.measurementUnitId.toString(),
+        store: this.data.storeId.toString(),
+      };
+
+     
     } else {
+      this.isEditMode=false;
       this.newItemModel = {
         unit: '-1',
         supply: '-1',
@@ -60,8 +71,6 @@ export class AddItemDialogComponent implements OnInit {
         store: '-1',
       };
     }
-
-    this.newItemModel ={...this.newItemModel, category:2, supply:1};
   }
 
   loadItemCatories() {
@@ -100,8 +109,6 @@ export class AddItemDialogComponent implements OnInit {
     });
   }
 
-
-
   addUpdateItem() {
     this.itemsService.saveItem(this.newItemModel).subscribe((response) => {});
   }
@@ -113,6 +120,7 @@ export class AddItemDialogComponent implements OnInit {
   }
 
   decline() {
+    this.isEditMode=false;
     this.result = false;
     this.bsModalRef.hide();
   }

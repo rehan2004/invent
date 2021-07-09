@@ -27,7 +27,6 @@ namespace API.Data
         public async Task<PagedList<ItemDto>> GetItemsAsync(UserParams userParams)
         {
             //var query = _context.Items.AsQueryable();
-
             var query = (from a in _context.Items
                           join b in _context.MeasurementUnits on a.MeasurementUnitId equals b.Id 
                           join c in _context.Stores on a.StoreId equals c.StoreId
@@ -41,8 +40,12 @@ namespace API.Data
                               ActualQuantity=a.ActualQuantity,
                               MeasurementUnit= b.Unit,
                               StoreName= c.StoreName,
-                              CategoryName=cat.CategoryName
-                             
+                              CategoryName=cat.CategoryName,
+                              MeasurementUnitId=a.MeasurementUnitId,
+                              StoreId=a.StoreId,
+                              CategoryId=a.CategoryId,
+                              SupplyId=a.SupplyId,
+                              Description=a.Description
                           }).Distinct();
 
             //query = query.Where(u => u.UserName != userParams.CurrentUsername);
@@ -67,24 +70,44 @@ namespace API.Data
 
         public async Task<int> SaveItemsAsync(SaveItemDto item)
         {
-           
+
             //var query = _context.Items.AsQueryable();
-            _context.Items.Add(new Item
+            if (item.Id == 0)
             {
-                StoreId = Convert.ToInt32(item.store),
-                ItemName = item.itemName,
-                CategoryId = Convert.ToInt32(item.category),
-                Quantity= item.quantity,
-                SerialNumber="111-02201111",
-                ActualQuantity = item.quantity,
-                SupplyId = Convert.ToInt32(item.supply),
-                MeasurementUnitId = Convert.ToInt32(item.unit),
-                Description = item.description,
-                CreatedBy=1,
-                IsActive=true
-                
-            });
-           
+                _context.Items.Add(new Item
+                {
+                    StoreId = Convert.ToInt32(item.store),
+                    ItemName = item.itemName,
+                    CategoryId = Convert.ToInt32(item.category),
+                    Quantity = item.quantity,
+                    SerialNumber = "111-02201111",
+                    ActualQuantity = item.quantity,
+                    SupplyId = Convert.ToInt32(item.supply),
+                    MeasurementUnitId = Convert.ToInt32(item.unit),
+                    Description = item.description,
+                    CreatedBy = 1,
+                    IsActive = true
+
+                });
+            }
+
+            else
+            {
+                Item itm=await _context.Items.FindAsync(item.Id);
+                itm.ItemName = item.itemName;
+
+                itm.Quantity = item.quantity;
+
+                itm.Quantity = item.quantity;
+                itm.ActualQuantity = item.quantity;
+                itm.SupplyId = Convert.ToInt32(item.supply);
+                itm.MeasurementUnitId = Convert.ToInt32(item.unit);
+
+                itm.CategoryId = Convert.ToInt32(item.categoryId);
+                itm.Description = item.description;
+                   
+                _context.Update(itm);
+            }
 
 
             return await _context.SaveChangesAsync();

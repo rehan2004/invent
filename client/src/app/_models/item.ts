@@ -10,6 +10,13 @@ export interface Item {
     measurementUnit: string;
     storeName: string;
     categoryName:string;
+
+
+    measurementUnitId:number;
+    storeId:number;
+    supplyId:number;
+    categoryId:number;
+    description:string;
     
   }
   
