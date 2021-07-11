@@ -53,6 +53,26 @@ export class ItemsService {
   }
 
 
+  getItemInventory(userParams: UserParams)
+  {
+    var response = this.itemCache.get(Object.values(userParams).join('-'));
+    if (response) {
+      return of(response);
+    }
+
+    let params = getPaginationHeaders(userParams.pageNumber, userParams.pageSize);
+    params = params.append('itemId', userParams.minAge.toString());
+
+    params = params.append('orderBy', userParams.orderBy);
+
+    return getPaginatedResult<Item[]>(this.baseUrl + 'items/items', params, this.http)
+      .pipe(map(response => {
+        this.itemCache.set(Object.values(userParams).join('-'), response);
+        return response;
+      }))
+
+  }
+
   getItems(userParams: UserParams) {
     var response = this.itemCache.get(Object.values(userParams).join('-'));
     if (response) {
