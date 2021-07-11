@@ -1,0 +1,82 @@
+<div class="modal-header">
+  <h4 class="modal-title pull-left">{{ title }}</h4>
+</div>
+<div class="modal-body">
+  <div class="form-group">
+    <form
+      #form="ngForm"
+      autocomplete="off"
+      id="editForm"
+      class="form-inline"
+      
+    >
+      <div class="col-lg-3">
+        <label>Item Name</label>
+
+        <input
+          type="text"
+          disabled="true"
+          [(ngModel)]="newItemModel.itemName"
+          class="form-control"
+          name="itemName"
+        />
+      </div>
+
+      <div class="col-lg-3">
+        <label>Initial Quantity</label>
+        <input
+          type="number"
+          disabled="true"
+          [(ngModel)]="newItemModel.quantity"
+          class="form-control"
+          name="quantity"
+        />
+      </div>
+
+      <div class="col-lg-3">
+        <label>Balance Quantity</label>
+        <input
+          type="number"
+          disabled="true"
+          [(ngModel)]="newItemModel.actualQuantity"
+          class="form-control"
+          name="actualQuantity"
+        />
+      </div>
+
+     
+      <div class="col-lg-4">
+        <label>Pull Quantity</label>
+        <input
+          type="number"
+          [(ngModel)]="newItemModel.pullQuantity"
+          class="form-control"
+          name="pullQuantity"
+          min="0"
+          
+        />
+      </div>
+      
+      <div class="col-lg-6">
+        <label> Pull Description</label>
+
+        <textarea
+          [(ngModel)]="newItemModel.description"
+          rows="1"
+          class="form-control"
+          style="width: 360px"
+          name="description"
+        >
+        </textarea>
+      </div>
+    </form>
+  </div>
+</div>
+<div class="modal-footer">
+  <button type="button" class="btn btn-success" (click)="confirm()">
+    {{ btnOkText }}
+  </button>
+  <button type="button" class="btn btn-danger" (click)="decline()">
+    {{ btnCancelText }}
+  </button>
+</div>

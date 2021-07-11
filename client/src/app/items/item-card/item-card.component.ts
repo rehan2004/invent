@@ -22,11 +22,16 @@ export class ItemCardComponent implements OnInit {
     
   }
 
+  
+  openInvLogModal(item:Item) {
+    this.modalService.confirm('Inventory Log', 'InventoryLogComponent', item,'').subscribe((result) => {
+      if (result) {}
+    });
+  }
+
   openInventoryModal(item:Item) {
- 
     this.modalService.confirm('Inventory Update', 'InventoryDialogComponent', item,'').subscribe((result) => {
-      if (result) {
-      }
+      if (result) {}
     });
   }
 

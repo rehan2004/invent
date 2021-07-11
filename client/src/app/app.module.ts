@@ -13,6 +13,7 @@ import { MemberListComponent } from './members/member-list/member-list.component
 import { ItemListComponent } from './items/item-list/item-list.component';
 import { AddItemDialogComponent } from './modals/add-item-dialog/add-item-dialog.component';
 import { InventoryDialogComponent } from './modals/inventory-dialog/inventory-dialog.component';
+import { InventoryLogComponent } from './modals/inventory-log/inventory-log.component';
 import { ItemCardComponent } from './items/item-card/item-card.component';
 import { StoreListComponent } from './stores/store-list/store-list.component';
 import { StoreCardComponent } from './stores/store-card/store-card.component';
@@ -51,6 +52,7 @@ import { ConfirmDialogComponent } from './modals/confirm-dialog/confirm-dialog.c
     ItemListComponent,
     AddItemDialogComponent,
     InventoryDialogComponent,
+    InventoryLogComponent,
     ItemCardComponent,
     StoreListComponent,
     StoreCardComponent,
