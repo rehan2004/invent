@@ -30,6 +30,7 @@ namespace API.DTOs
         public string category { get; set; }
         public int categoryId { get; set; }
         public int quantity { get; set; }
+        public int pullQuantity { get; set; }
         public string store { get; set; }
         public string supply { get; set; }
         public string unit { get; set; }

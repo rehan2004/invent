@@ -55,6 +55,12 @@ namespace API.Controllers
         }
 
 
+        [HttpPost("updateinventory")]
+        public async Task<ActionResult<int>> UpdateInventory(SaveItemDto newItem)
+        {
+            var query = await _unitOfWork.ItemRepository.UpdateInventoryAsync(newItem);
+            return Ok(query);
+        }
 
 
     }

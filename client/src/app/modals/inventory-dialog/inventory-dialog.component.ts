@@ -30,6 +30,7 @@ export class InventoryDialogComponent implements OnInit {
   supplies: Supply[];
   stores: Store[];
   pagination: Pagination;
+  tempActualQuantity:number;
 
   user: User;
 
@@ -51,6 +52,13 @@ export class InventoryDialogComponent implements OnInit {
     this.loadMeasurementUnit();
     this.loadSupply();
     this.loadStore();
+    this.newItemModel.pullQuantity=0;
+    this.tempActualQuantity= this.newItemModel.actualQuantity;
+  }
+  pullQuantityUpdate()
+  {
+    
+    this.newItemModel.actualQuantity= this.tempActualQuantity-this.newItemModel.pullQuantity;
   }
 
   loadItemCatories() {
@@ -89,9 +97,9 @@ export class InventoryDialogComponent implements OnInit {
     });
   }
 
-  addUpdateItem() {
-    
-    this.itemsService.saveItem(this.newItemModel).subscribe((response) => {
+  updateInventory() {
+    //alert(JSON.stringify(this.newItemModel))
+    this.itemsService.updateInventory(this.newItemModel).subscribe((response) => {
   
     });
 
@@ -99,7 +107,7 @@ export class InventoryDialogComponent implements OnInit {
 
   confirm() {
     this.result = true;
-    this.addUpdateItem();
+    this.updateInventory();
     this.bsModalRef.hide();
   }
 

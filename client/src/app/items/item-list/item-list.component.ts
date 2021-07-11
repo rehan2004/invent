@@ -1,14 +1,17 @@
 import { Component, OnInit } from '@angular/core';
 import { Item } from 'src/app/_models/item';
+import { Store } from 'src/app/_models/store';
 import { ItemsService } from 'src/app/_services/items.service';
 import { Observable } from 'rxjs';
 import { Pagination } from 'src/app/_models/pagination';
 import { UserParams } from 'src/app/_models/userParams';
+import { SearchParams } from 'src/app/_models/searchParams';
 import { AccountService } from 'src/app/_services/account.service';
 import { take } from 'rxjs/operators';
 import { User } from 'src/app/_models/user';
 import { BsModalRef, BsModalService } from 'ngx-bootstrap/modal';
 import { ModalService } from 'src/app/_services/modal.service';
+import { LookupService } from 'src/app/_services/lookup.service';
 
 @Component({
   selector: 'app-item-list',
@@ -16,10 +19,12 @@ import { ModalService } from 'src/app/_services/modal.service';
   styleUrls: ['./item-list.component.css'],
 })
 export class ItemListComponent implements OnInit {
+  public stores: Store[];
   bsModalRef: BsModalRef;
   items: Item[];
   pagination: Pagination;
   userParams: UserParams;
+  searchParams: SearchParams;
   user: User;
   genderList = [
     { value: 'store1', display: 'Store-1' },
@@ -29,14 +34,28 @@ export class ItemListComponent implements OnInit {
 
   constructor(
     private itemService: ItemsService,
-    private modalService: ModalService
+    private modalService: ModalService,
+    private lookupService: LookupService,
   ) {
     this.userParams = this.itemService.getUserParams();
+    this.searchParams = this.lookupService.getSearchParams();
   }
 
   ngOnInit(): void {
     this.loadItems();
+    this.loadStores()
   }
+
+
+ 
+  loadStores() {
+    this.lookupService.setSearchParams(this.searchParams);
+    this.lookupService.getStores(this.searchParams).subscribe((response) => {
+      this.stores = response.result;
+      this.pagination = response.pagination;
+    });
+  }
+
 
   loadItems() {
     this.itemService.setUserParams(this.userParams);

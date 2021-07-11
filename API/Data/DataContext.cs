@@ -21,6 +21,7 @@ namespace API.Data
         public DbSet<Message> Messages { get; set; }
         public DbSet<Store> Stores { get; set; }
         public DbSet<Supplier> Supplier { get; set; }
+        public DbSet<Inventory> Inventories { get; set; }
         public DbSet<SupplierType> SupplierType { get; set; }
 
         public DbSet<SupplierCategory> SupplierCategory{ get; set; }

@@ -47,6 +47,12 @@ export class ItemsService {
   }
 
 
+  updateInventory(newItemModel: any) {
+    console.log(newItemModel)
+    return this.http.post(this.baseUrl + 'items/updateinventory/' , newItemModel, {})
+  }
+
+
   getItems(userParams: UserParams) {
     var response = this.itemCache.get(Object.values(userParams).join('-'));
     if (response) {

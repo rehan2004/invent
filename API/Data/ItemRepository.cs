@@ -68,6 +68,35 @@ namespace API.Data
         }
 
 
+        public async Task<int> UpdateInventoryAsync(SaveItemDto item)
+        {
+
+            //var query = _context.Items.AsQueryable();
+            if (item.Id == 0)
+            {
+                return -1;
+            }
+
+            else
+            {
+                Item itm = await _context.Items.FindAsync(item.Id);
+                itm.ActualQuantity = itm.ActualQuantity-item.pullQuantity;
+                _context.Update(itm);
+                _context.Inventories.Add(new Inventory
+                {
+                     ItemId= item.Id,
+                     WithdrawQuantity=item.pullQuantity,
+                     ActualQuantity= itm.ActualQuantity,
+                     Description= item.description,
+
+                }
+                );
+            }
+
+
+            return await _context.SaveChangesAsync();
+        }
+
         public async Task<int> SaveItemsAsync(SaveItemDto item)
         {
 

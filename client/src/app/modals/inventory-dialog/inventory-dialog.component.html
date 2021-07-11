@@ -8,7 +8,7 @@
       autocomplete="off"
       id="editForm"
       class="form-inline"
-      (ngSubmit)="addUpdateItem()"
+      (ngSubmit)="updateInventory()"
     >
       <div class="col-lg-3">
         <label>Item Name</label>
@@ -47,11 +47,13 @@
      
       <div class="col-lg-4">
         <label>Pull Quantity</label>
-        <input
+        <input (change)="pullQuantityUpdate();"
           type="number"
-          [(ngModel)]="newItemModel.quantity"
+          [(ngModel)]="newItemModel.pullQuantity"
           class="form-control"
-          name="introduction"
+          name="pullQuantity"
+          min="0"
+          
         />
       </div>
       
@@ -63,7 +65,7 @@
           rows="1"
           class="form-control"
           style="width: 360px"
-          name="introduction"
+          name="description"
         >
         </textarea>
       </div>
