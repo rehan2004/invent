@@ -1,12 +1,9 @@
 
 
 export interface Store {
-    storeId: number;
-    
+    storeId: number;  
     storeName: string;
     description:string;
-    location:string;
-    
-    
+    location:string; 
   }
   
