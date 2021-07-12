@@ -58,7 +58,10 @@ export class ItemListComponent implements OnInit {
 
 
   loadItems() {
+    if (this.searchParams.itemName)
     this.userParams.itemName = this.searchParams.itemName;
+    else
+    this.userParams.itemName = null;
     console.log( this.userParams)
     this.itemService.setUserParams(this.userParams);
     this.itemService.getItems(this.userParams).subscribe((response) => {
@@ -74,7 +77,9 @@ export class ItemListComponent implements OnInit {
     });
   }
   resetFilters() {
+   
     this.userParams = this.itemService.resetUserParams();
+    this.searchParams.itemName=null;
     this.loadItems();
   }
 
