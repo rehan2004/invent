@@ -26,11 +26,11 @@ export class ItemListComponent implements OnInit {
   userParams: UserParams;
   searchParams: SearchParams;
   user: User;
-  genderList = [
-    { value: 'store1', display: 'Store-1' },
-    { value: 'store2', display: 'Store-2' },
-    { value: 'store3', display: 'Store-3' },
-  ];
+  // genderList = [
+  //   { value: 'store1', display: 'Store-1' },
+  //   { value: 'store2', display: 'Store-2' },
+  //   { value: 'store3', display: 'Store-3' },
+  // ];
 
   constructor(
     private itemService: ItemsService,
@@ -58,6 +58,8 @@ export class ItemListComponent implements OnInit {
 
 
   loadItems() {
+    this.userParams.itemName = this.searchParams.itemName;
+    console.log( this.userParams)
     this.itemService.setUserParams(this.userParams);
     this.itemService.getItems(this.userParams).subscribe((response) => {
       this.items = response.result;

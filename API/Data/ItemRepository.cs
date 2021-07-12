@@ -28,39 +28,29 @@ namespace API.Data
         {
             //var query = _context.Items.AsQueryable();
             var query = (from a in _context.Items
-                          join b in _context.MeasurementUnits on a.MeasurementUnitId equals b.Id 
-                          join c in _context.Stores on a.StoreId equals c.StoreId
-                          join cat in _context.ItemCategory on a.CategoryId equals cat.Id                         
+                         join b in _context.MeasurementUnits on a.MeasurementUnitId equals b.Id
+                         join c in _context.Stores on a.StoreId equals c.StoreId
+                         join cat in _context.ItemCategory on a.CategoryId equals cat.Id
                          select new ItemDto
-                          {
-                              Id=a.Id,
-                              ItemName= a.ItemName,
-                              BrandName= a.BrandName,
-                              Quantity= a.Quantity,
-                              ActualQuantity=a.ActualQuantity,
-                              MeasurementUnit= b.Unit,
-                              StoreName= c.StoreName,
-                              CategoryName=cat.CategoryName,
-                              MeasurementUnitId=a.MeasurementUnitId,
-                              StoreId=a.StoreId,
-                              CategoryId=a.CategoryId,
-                              SupplyId=a.SupplyId,
-                              Description=a.Description
-                          }).Distinct();
+                         {
+                             Id = a.Id,
+                             ItemName = a.ItemName,
+                             BrandName = a.BrandName,
+                             Quantity = a.Quantity,
+                             ActualQuantity = a.ActualQuantity,
+                             MeasurementUnit = b.Unit,
+                             StoreName = c.StoreName,
+                             CategoryName = cat.CategoryName,
+                             MeasurementUnitId = a.MeasurementUnitId,
+                             StoreId = a.StoreId,
+                             CategoryId = a.CategoryId,
+                             SupplyId = a.SupplyId,
+                             Description = a.Description
+                         }).Distinct().AsQueryable();
 
-            //query = query.Where(u => u.UserName != userParams.CurrentUsername);
-            //query = query.Where(u => u.Gender == userParams.Gender);
-
-            //var minDob = DateTime.Today.AddYears(-userParams.MaxAge - 1);
-            //var maxDob = DateTime.Today.AddYears(-userParams.MinAge);
-
-            //query = query.Where(u => u.DateOfBirth >= minDob && u.DateOfBirth <= maxDob);
-
-            //query = userParams.OrderBy switch
-            //{
-            //    "created" => query.OrderByDescending(u => u.Created),
-            //    _ => query.OrderByDescending(u => u.LastActive)
-            //};
+                
+             if (userParams.ItemName!=null)
+            query = query.Where((m => m.ItemName.Contains(userParams.ItemName)));
 
             return await PagedList<ItemDto>.CreateAsync(query.ProjectTo<ItemDto>(_mapper
                 .ConfigurationProvider).AsNoTracking(), 

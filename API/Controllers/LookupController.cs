@@ -35,10 +35,8 @@ namespace API.Controllers
         public async Task<ActionResult<IEnumerable<ItemCategoryDto>>> GetCategory([FromQuery] SearchParams searchParams)
         {
             var results = await _unitOfWork.LookupRepository.GetItemCategoriesAsync(searchParams);
-
             Response.AddPaginationHeader(results.CurrentPage, results.PageSize,
-                results.TotalCount, results.TotalPages);
-               
+                results.TotalCount, results.TotalPages);           
             return Ok(results);
         }
 
