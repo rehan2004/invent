@@ -39,12 +39,12 @@ namespace API.Controllers
             //if (string.IsNullOrEmpty(userParams.Gender))
             //    userParams.Gender = gender == "male" ? "female" : "male";
 
-            var users = await _unitOfWork.ItemRepository.GetItemsAsync(userParams);
+            var query = await _unitOfWork.ItemRepository.GetItemsAsync(userParams);
 
-            Response.AddPaginationHeader(users.CurrentPage, users.PageSize,
-                users.TotalCount, users.TotalPages);
+            Response.AddPaginationHeader(query.CurrentPage, query.PageSize,
+                query.TotalCount, query.TotalPages);
 
-            return Ok(users);
+            return Ok(query);
         }
 
         [HttpPost("saveitem")]
@@ -62,6 +62,17 @@ namespace API.Controllers
             return Ok(query);
         }
 
+     
+        [HttpGet("getitem-inventory")]
+        public async Task<ActionResult<IEnumerable<InventoryDto>>> GetItemInventory([FromQuery] SearchParams searchParams)
+        {
+            var query = await _unitOfWork.ItemRepository.GetItemInventoryAsync(searchParams);
+
+            Response.AddPaginationHeader(query.CurrentPage, query.PageSize,
+                query.TotalCount, query.TotalPages);
+
+            return Ok(query);
+        }
 
     }
 }

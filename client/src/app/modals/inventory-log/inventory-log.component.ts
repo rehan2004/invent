@@ -41,6 +41,7 @@ export class InventoryLogComponent implements OnInit {
 
   ngOnInit(): void {
     this.itemModel = this.data;
+    this.loadInventory();
   }
   
  

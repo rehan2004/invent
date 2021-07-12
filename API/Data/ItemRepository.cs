@@ -67,6 +67,21 @@ namespace API.Data
                     userParams.PageNumber, userParams.PageSize);
         }
 
+        
+        public async Task<PagedList<InventoryDto>> GetItemInventoryAsync(SearchParams searchParams)
+        {
+             Item itm = await _context.Items.FindAsync(searchParams.ItemId);
+            
+            var query =  _context.Inventories
+                .Where(m => m.ItemId== searchParams.ItemId).AsQueryable();
+
+          
+            return await PagedList<InventoryDto>.CreateAsync(query.ProjectTo<InventoryDto>(_mapper
+                .ConfigurationProvider).AsNoTracking(),
+                    searchParams.PageNumber, searchParams.PageSize);
+        }
+
+
 
         public async Task<int> UpdateInventoryAsync(SaveItemDto item)
         {

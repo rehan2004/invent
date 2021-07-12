@@ -1,28 +1,28 @@
 <div class="modal-header">
-  <h4 class="modal-title pull-left">{{ title }}</h4>
+  <h4 class="modal-title pull-left">Inventory history Details</h4>
 </div>
 <div class="modal-body">
-  <div class="row">
+ 
     <table class="table">
         <tr>
-            <th style="width: 20%;">Initial Quantity</th>
-            <th style="width: 30%;">Pulled quantity</th>
-            <th style="width: 20%;">Balance</th>
-            <th style="width: 30%;">Date</th>
+            <th style="width: 15%;">Actual Qty</th>
+            <th style="width: 15%;">Pulled Qty</th>
+            <th style="width: 20%;">Serial</th>
+            <th style="width: 20%;">Date</th>
+            <th style="width: 30%;">Description</th>
         </tr>
-        <tr>
-            <td></td>
-            <td></td>
-            <td></td>
+        <tr *ngFor="let inventory of inventories">
+            <td align="center">{{inventory.actualQuantity}}</td>
+            <td align="center">{{inventory.withdrawQuantity}}</td>
+            <td align="center">{{inventory.serialNumber}}</td>
+            <td >{{inventory.inventoryDate  | date:'shortDate'}}</td>
+            <td>{{inventory.description}}</td>
         </tr>
     </table>
 </div>
 
-</div>
 <div class="modal-footer">
-  <button type="button" class="btn btn-success" (click)="confirm()">
-    {{ btnOkText }}
-  </button>
+ 
   <button type="button" class="btn btn-danger" (click)="decline()">
     {{ btnCancelText }}
   </button>

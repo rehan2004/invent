@@ -47,10 +47,10 @@ export class InventoriesService {
     }
 
     let params = getPaginationHeaders(searchParams.pageNumber, searchParams.pageSize);
-     params = params.append('storeName', searchParams.storeName.toString());
+     params = params.append('itemId', searchParams.itemId.toString());
     params = params.append('orderBy', searchParams.orderBy);
 
-    return getPaginatedResult<Inventory[]>(this.baseUrl + 'items/inventory', params, this.http)
+    return getPaginatedResult<Inventory[]>(this.baseUrl + 'items/getitem-inventory', params, this.http)
       .pipe(map(response => {
         this.inventoryCache.set(Object.values(searchParams).join('-'), response);
         return response;
