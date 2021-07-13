@@ -8,6 +8,7 @@ export class UserParams {
     pageSize = 5;
     orderBy = 'lastActive';
     itemName:string;
+    supplierName:string;
 
     constructor(user: User) {
         this.gender = user.gender === 'female' ? 'male' : 'female';
