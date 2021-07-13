@@ -6,6 +6,7 @@ namespace API.Interfaces
     {
         IUserRepository UserRepository {get; }
         IItemRepository ItemRepository { get; }
+        ISupplierRepository SupplierRepository { get; }
         IStoreRepository StoreRepository { get; }
         ILookupRepository LookupRepository { get; }
         IMessageRepository MessageRepository {get;}

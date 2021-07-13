@@ -17,9 +17,6 @@ namespace API.Interfaces
         
         Task<int> SaveItemsAsync(SaveItemDto item);
         Task<int> UpdateInventoryAsync(SaveItemDto item);
-        
-
-        //Task<MemberDto> GetMemberAsync(string username);
-        //Task<string> GetUserGender(string username);
+     
     }
 }
