@@ -26,6 +26,7 @@ namespace API.Helpers
             CreateMap<MessageDto, Message>();
             CreateMap<Item, ItemDto>();
             CreateMap<ItemDto, ItemDto>();
+            CreateMap<SupplierDto, SupplierDto>();
             CreateMap<Store, StoreDto>();
             CreateMap<Category, ItemCategoryDto>();
             CreateMap<Inventory, InventoryDto>();

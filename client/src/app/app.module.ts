@@ -11,6 +11,7 @@ import { HomeComponent } from './home/home.component';
 import { RegisterComponent } from './register/register.component';
 import { MemberListComponent } from './members/member-list/member-list.component';
 import { SupplierListComponent } from './supplier/supplier-list/supplier-list.component';
+import { SupplierCardComponent } from './supplier/supplier-card/supplier-card.component';
 import { ItemListComponent } from './items/item-list/item-list.component';
 import { AddItemDialogComponent } from './modals/add-item-dialog/add-item-dialog.component';
 import { InventoryDialogComponent } from './modals/inventory-dialog/inventory-dialog.component';
@@ -55,6 +56,7 @@ import { ConfirmDialogComponent } from './modals/confirm-dialog/confirm-dialog.c
     InventoryDialogComponent,
     InventoryLogComponent,
     SupplierListComponent,
+    SupplierCardComponent,
     ItemCardComponent,
     StoreListComponent,
     StoreCardComponent,

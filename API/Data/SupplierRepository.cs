@@ -29,13 +29,15 @@ namespace API.Data
             //var query = _context.Suppliers.AsQueryable();
             var query = (from a in _context.Supplier
                         
-                        // join c in _context.Stores on a.StoreId equals c.StoreId
+                         join c in _context.SupplierType on a.TypeId equals c.Id
                          join cat in _context.SupplierCategory on a.CategoryId equals cat.Id
                          select new SupplierDto
                          {
                              Id = a.Id,
                              SupplierName = a.SupplierName,
-                           
+                             CategoryName=cat.CategoryName,
+                             Type= c.TypeName,
+                             SupplierCode=a.SupplierCode,
                              Description = a.Description
                          }).Distinct().AsQueryable();
 
