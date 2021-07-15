@@ -2,6 +2,7 @@ import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 import { HomeComponent } from './home/home.component';
 import { MemberListComponent } from './members/member-list/member-list.component';
+import { SupplyListComponent } from './supply/supply-list/supply-list.component';
 import { SupplierListComponent } from './supplier/supplier-list/supplier-list.component';
 import { ItemListComponent } from './items/item-list/item-list.component';
 import { StoreListComponent } from './stores/store-list/store-list.component';
@@ -27,6 +28,8 @@ const routes: Routes = [
     children: [
       //{path: 'members', component: MemberListComponent},
       {path: 'item', component: ItemListComponent},
+      
+      {path:'supply', component:SupplyListComponent},
       {path:'supplier', component:SupplierListComponent},
       {path: 'members/:username', component: MemberDetailComponent, resolve: {member: MemberDetailedResolver}},
       {path: 'member/edit', component: MemberEditComponent, canDeactivate: [PreventUnsavedChangesGuard]},

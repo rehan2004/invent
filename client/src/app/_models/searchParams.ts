@@ -9,6 +9,7 @@ export class SearchParams {
     
     supplierId: number;
     supplierName: string;
+    supplyTitle:string;
     pageNumber = 1;
     pageSize = 5;
     orderBy = 'lastActive';

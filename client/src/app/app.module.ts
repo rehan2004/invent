@@ -10,6 +10,8 @@ import { NavComponent } from './nav/nav.component';
 import { HomeComponent } from './home/home.component';
 import { RegisterComponent } from './register/register.component';
 import { MemberListComponent } from './members/member-list/member-list.component';
+import { SupplyListComponent } from './supply/supply-list/supply-list.component';
+import { SupplyCardComponent } from './supply/supply-card/supply-card.component';
 import { SupplierListComponent } from './supplier/supplier-list/supplier-list.component';
 import { SupplierCardComponent } from './supplier/supplier-card/supplier-card.component';
 import { ItemListComponent } from './items/item-list/item-list.component';
@@ -55,6 +57,8 @@ import { ConfirmDialogComponent } from './modals/confirm-dialog/confirm-dialog.c
     AddItemDialogComponent,
     InventoryDialogComponent,
     InventoryLogComponent,
+    SupplyListComponent,
+    SupplyCardComponent,
     SupplierListComponent,
     SupplierCardComponent,
     ItemCardComponent,
