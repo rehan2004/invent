@@ -11,6 +11,7 @@ import { User } from '../_models/user';
 import { Store } from '../_models/store';
 
 import { getPaginatedResult, getPaginationHeaders } from './paginationHelper';
+import { Supplier } from '../_models/supplier';
 
 
 @Injectable({
@@ -25,6 +26,7 @@ export class LookupService {
   supply: Supply[] = [];
   supplyCache= new Map();
   storeCache= new Map();
+  suppliersCache= new Map();
   
   searchParams: SearchParams;
   user: User;
@@ -109,6 +111,22 @@ export class LookupService {
     params = params.append('orderBy', searchParams.orderBy);
 
     return getPaginatedResult<Store[]>(this.baseUrl + 'stores', params, this.http)
+      .pipe(map(response => {
+        this.supplyCache.set(Object.values(searchParams).join('-'), response);
+        return response;
+      }))
+  }
+
+  getSuppliers(searchParams: SearchParams) {
+    var response = this.suppliersCache.get(Object.values(searchParams).join('-'));
+    if (response) {
+      return of(response);
+    }
+
+    let params = getPaginationHeaders(searchParams.pageNumber, searchParams.pageSize);
+    params = params.append('orderBy', searchParams.orderBy);
+
+    return getPaginatedResult<Supplier[]>(this.baseUrl + 'suppliers/suppliers', params, this.http)
       .pipe(map(response => {
         this.supplyCache.set(Object.values(searchParams).join('-'), response);
         return response;

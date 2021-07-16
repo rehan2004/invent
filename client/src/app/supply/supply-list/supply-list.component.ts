@@ -12,6 +12,7 @@ import { User } from 'src/app/_models/user';
 import { BsModalRef, BsModalService } from 'ngx-bootstrap/modal';
 import { ModalService } from 'src/app/_services/modal.service';
 import { LookupService } from 'src/app/_services/lookup.service';
+import { Supplier } from 'src/app/_models/supplier';
 
 @Component({
   selector: 'app-supply-list',
@@ -19,9 +20,10 @@ import { LookupService } from 'src/app/_services/lookup.service';
   styleUrls: ['./supply-list.component.css'],
 })
 export class SupplyListComponent implements OnInit {
-  public stores: Store[];
+
   bsModalRef: BsModalRef;
   supplies: Supply[];
+  suppliers: Supplier[];
   pagination: Pagination;
   userParams: UserParams;
   searchParams: SearchParams;
@@ -38,16 +40,16 @@ export class SupplyListComponent implements OnInit {
 
   ngOnInit(): void {
     this.loadSupplies();
-    this.loadStores()
+    this.loadSuppliers()
   }
 
 
  
-  loadStores() {
+  loadSuppliers() {
     this.lookupService.setSearchParams(this.searchParams);
-    this.lookupService.getStores(this.searchParams).subscribe((response) => {
-      this.stores = response.result;
-      this.pagination = response.pagination;
+    this.lookupService.getSuppliers(this.searchParams).subscribe((response) => {
+      this.suppliers = response.result;
+      //this.pagination = response.pagination;
     });
   }
 
@@ -57,7 +59,6 @@ export class SupplyListComponent implements OnInit {
     this.userParams.supplyTitle = this.searchParams.supplyTitle;
     else
     this.userParams.supplyTitle = null;
-    console.log( this.userParams)
     this.supplyService.setUserParams(this.userParams);
     this.supplyService.getSupplies(this.userParams).subscribe((response) => {
       this.supplies = response.result;

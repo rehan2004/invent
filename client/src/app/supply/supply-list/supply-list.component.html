@@ -13,25 +13,26 @@
     autocomplete="off"
   >
     <div class="form-group">
-      <label>Supplier : </label>
+      <label>Supplier : &nbsp;</label>
+      <select name="supplier"  [(ngModel)]="searchParams.supplierId" style="width: 170px"   class="form-control ">
+        <option  value="-1">
+          -Select-
+      </option>
+        <option *ngFor="let supplier of suppliers" [value]="supplier.Id">
+          {{supplier.supplierName}}
+      </option>
+    </select>
+     
+    </div>
+
+    <div class="form-group px-2">
+      <label>Supply Title :&nbsp; </label>
       <input
         type="text"
         class="form-control ml-1"
         style="width: 170px"
-        name="supplyName" [(ngModel)]="searchParams.supplyTitle"
+        name="supplyTitle" [(ngModel)]="searchParams.supplyTitle"
       />
-    </div>
-
-    <div class="form-group px-2">
-      <label>Code :&nbsp; </label>
-      <select name="store"  [(ngModel)]="searchParams.storeId" style="width: 170px"   class="form-control ">
-        <option  value="-1">
-          -Select-
-      </option>
-        <option *ngFor="let store of stores" [value]="store.storeId">
-          {{store.storeName}}
-      </option>
-    </select>
     </div>
 
     <button class="btn btn-primary ml-1" type="button" (click)="loadSupplies()">Search</button>

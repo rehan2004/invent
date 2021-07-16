@@ -2,7 +2,7 @@
   <span
     class="card-text text-muted text-center"
     style="color: rgb(197, 103, 69) !important; font-size: 10 !important "
-    >Recieved:{{ supply.recievedDate }}
+    >Recieved:{{ supply.recievedDate | date:'shortDate'}}
   </span>
 
   <div class="card-img-wrapper">
@@ -33,10 +33,10 @@
   </div>
   <div class="card-body p-1">
     <h6 class="card-title text-center mb-1">
-      <span>{{ supply.description }} </span>
+      <span>{{ supply.supplyTitle }} </span>
     </h6>
     <p class="card-text text-muted text-center">
-      Order: {{ supply.orderDate }}
+      Order: {{ supply.orderDate | date:'shortDate'}}
     </p>
   </div>
 </div>
