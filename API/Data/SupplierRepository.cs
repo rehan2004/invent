@@ -22,7 +22,33 @@ namespace API.Data
             _context = context;
         }
 
-       
+        
+
+        public async Task<PagedList<SupplyDto>> GetSuppliesAsync(UserParams userParams)
+        {
+           
+            var query = (from a in _context.Supply
+
+                         join c in _context.Supplier on a.SupplierId equals c.Id
+                       
+                         select new SupplyDto
+                         {
+                            Id = a.Id,
+                            SupplyTitle = a.SupplyTitle,
+                            OrderDate= a.OrderDate,
+                            RecievedDate=a.RecievedDate,
+                            SupplierName=c.SupplierName,
+                            Description = a.Description
+                         }).Distinct().AsQueryable();
+
+
+            // if (userParams.SupplierName!=null)
+            //query = query.Where((m => m.SupplierName.Contains(userParams.SupplierName)));
+
+            return await PagedList<SupplyDto>.CreateAsync(query.ProjectTo<SupplyDto>(_mapper
+                .ConfigurationProvider).AsNoTracking(),
+                    userParams.PageNumber, userParams.PageSize);
+        }
 
         public async Task<PagedList<SupplierDto>> GetSuppliersAsync(UserParams userParams)
         {
@@ -78,6 +104,32 @@ namespace API.Data
         }
 
         
+        public async Task<int> SaveSupplyAsync(SaveSupplyDto objSupply)
+        {
+
+           
+            if (objSupply.Id == 0)
+            {
+                _context.Supply.Add(new Supply
+                {
+                    SupplyTitle = objSupply.SupplyTitle,
+
+
+                });
+            }
+
+            else
+            {
+                Supply sup = await _context.Supply.FindAsync(objSupply.Id);
+                sup.SupplyTitle = objSupply.SupplyTitle;
+
+                _context.Update(sup);
+            }
+
+
+            return await _context.SaveChangesAsync();
+        }
+
 
         public async Task<AppUser> GetUserByIdAsync(int id)
         {

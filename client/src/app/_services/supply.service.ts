@@ -86,7 +86,7 @@ if (userParams.supplierName)
     // params = params.append('gender', userParams.gender);
     params = params.append('orderBy', userParams.orderBy);
 
-    return getPaginatedResult<Supply[]>(this.baseUrl + 'supplies/supplies', params, this.http)
+    return getPaginatedResult<Supply[]>(this.baseUrl + 'supply/supplies', params, this.http)
       .pipe(map(response => {
         this.supplierCache.set(Object.values(userParams).join('-'), response);
         return response;

@@ -10,8 +10,11 @@ namespace API.Interfaces
     {
        
         Task<PagedList<SupplierDto>> GetSuppliersAsync(UserParams userParams);
-     
         Task<int> SaveSuppliersAsync(SaveSupplierDto item);
-        
+
+
+        Task<PagedList<SupplyDto>> GetSuppliesAsync(UserParams userParams);
+        Task<int> SaveSupplyAsync(SaveSupplyDto obj);
+
     }
 }
