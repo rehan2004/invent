@@ -80,7 +80,10 @@
   <div *ngFor="let item of items" class="col-2">
     <!-- <span>{{item.itemName}}</span> -->
     <br />
-    <app-item-card [item]="item"></app-item-card>
+    <!-- <app-item-card [item]="item"></app-item-card> -->
+    <table><tr><th>Item Name</th><th>Category</th></tr>
+      <app-item-table [item]="item"></app-item-table>
+    </table>
   </div>
 </div>
 
