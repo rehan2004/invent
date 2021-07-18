@@ -18,23 +18,29 @@
         type="text"
         class="form-control ml-1"
         style="width: 170px"
-        name="itemName" [(ngModel)]="searchParams.itemName"
+        name="itemName"
+        [(ngModel)]="searchParams.itemName"
       />
     </div>
 
     <div class="form-group px-2">
       <label>Store :&nbsp; </label>
-      <select name="store"  [(ngModel)]="searchParams.storeId" style="width: 170px"   class="form-control ">
-        <option  value="-1">
-          -Select-
-      </option>
+      <select
+        name="store"
+        [(ngModel)]="searchParams.storeId"
+        style="width: 170px"
+        class="form-control"
+      >
+        <option value="-1">-Select-</option>
         <option *ngFor="let store of stores" [value]="store.storeId">
-          {{store.storeName}}
-      </option>
-    </select>
+          {{ store.storeName }}
+        </option>
+      </select>
     </div>
 
-    <button class="btn btn-primary ml-1" type="button" (click)="loadItems()">Search</button>
+    <button class="btn btn-primary ml-1" type="button" (click)="loadItems()">
+      Search
+    </button>
     <button (click)="resetFilters()" class="btn btn-info ml-1" type="button">
       Reset
     </button>
@@ -61,12 +67,12 @@
         <button
           type="button"
           class="btn btn-primary"
-          name="orderBy"
-          (click)="loadItems()"
-          btnRadio="created"
-          [(ngModel)]="userParams.orderBy"
+          name="listView"
+          (click)="toggleView()"
+          btnRadio="listView"
+          [(ngModel)]="viewModel.ViewType"
         >
-          Newest Items
+          {{ viewModel.ViewType }}
         </button>
       </div>
     </div>
@@ -76,16 +82,39 @@
   </div>
 </div>
 
-<div class="row">
-  <div *ngFor="let item of items" class="col-2">
-    <!-- <span>{{item.itemName}}</span> -->
-    <br />
-    <!-- <app-item-card [item]="item"></app-item-card> -->
-    <table><tr><th>Item Name</th><th>Category</th></tr>
-      <app-item-table [item]="item"></app-item-table>
-    </table>
+
+  <div class="row" *ngIf="this.viewModel.ViewType == 'Card View'; else elseBlock">
+    <div *ngFor="let item of items" class="col-2">
+      <br />
+      <app-item-card [item]="item"></app-item-card>
+    </div>
   </div>
-</div>
+  <ng-template #elseBlock>
+     
+<table class="table">
+  <thead>
+    <tr>
+      <th scope="col">#</th>
+      <th scope="col">Item Name</th>
+      <th scope="col">Category</th>
+      <th scope="col">Store</th>
+      <th scope="col">Inititial/Inventory qty</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr
+      app-item-table
+      *ngFor="let item of items; let sno = index"
+      [item]="item"
+      [sno]="sno"
+    ></tr>
+  </tbody>
+</table>
+
+ </ng-template
+  >
+
+
 
 <div class="d-flex justify-content-center" *ngIf="pagination">
   <pagination

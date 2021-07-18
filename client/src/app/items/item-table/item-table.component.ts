@@ -6,12 +6,12 @@ import { PresenceService } from 'src/app/_services/presence.service';
 import { ModalService } from 'src/app/_services/modal.service';
 
 @Component({
-  selector: 'app-item-table',
-  templateUrl: './item-table.component.html',
-  styleUrls: ['./item-table.component.css'],
+  selector: '[app-item-table]',
+  templateUrl: './item-table.component.html'
 })
 export class ItemTableComponent implements OnInit {
   @Input() item: Item;
+  @Input() sno: number;
 
   constructor(private itemService: ItemsService, private toastr: ToastrService, 
     private modalService: ModalService,

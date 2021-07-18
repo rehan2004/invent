@@ -20,6 +20,7 @@ import { LookupService } from 'src/app/_services/lookup.service';
 })
 export class ItemListComponent implements OnInit {
   public stores: Store[];
+  public viewModel: any={}
   bsModalRef: BsModalRef;
   items: Item[];
   pagination: Pagination;
@@ -44,6 +45,7 @@ export class ItemListComponent implements OnInit {
   ngOnInit(): void {
     this.loadItems();
     this.loadStores()
+    this.viewModel.ViewType="Card View"
   }
 
 
@@ -56,6 +58,13 @@ export class ItemListComponent implements OnInit {
     });
   }
 
+  toggleView()
+  {
+    if (this.viewModel.ViewType=="List View")
+    this.viewModel.ViewType="Card View"
+    else
+    this.viewModel.ViewType="List View"
+  }
 
   loadItems() {
     if (this.searchParams.itemName)
