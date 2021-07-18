@@ -72,7 +72,12 @@
           btnRadio="listView"
           [(ngModel)]="viewModel.ViewType"
         >
-          {{ viewModel.ViewType }}
+        <span  *ngIf="this.viewModel.ViewType == 'Card View'">
+          List View
+         </span>
+         <span  *ngIf="this.viewModel.ViewType == 'List View'">
+          Card View
+         </span>
         </button>
       </div>
     </div>
@@ -111,8 +116,7 @@
   </tbody>
 </table>
 
- </ng-template
-  >
+ </ng-template>
 
 
 
